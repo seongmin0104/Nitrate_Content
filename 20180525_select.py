@@ -6,8 +6,7 @@ from bokeh.models.widgets import Select, DataTable, DateFormatter, TableColumn, 
 from bokeh.models import HoverTool, LabelSet
 from bokeh.layouts import column, widgetbox
 from bokeh.palettes import Spectral4
-
-
+import webapp2
 def datetime(x):
     return np.array(x, dtype='datetime64[D]')
 
@@ -65,4 +64,15 @@ layout1 = column(widgetbox(select), p)
 layout2 = column(layout1,widgetbox(data_table))
 
 curdoc().add_root(layout2)
-show(layout2)
+
+app = webapp2.WSGIApplication([
+    ('/', layout2),
+], debug=True)
+
+
+
+
+
+
+
+
